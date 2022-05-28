@@ -13,6 +13,8 @@
 		6333720C284266F200BA1B91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6333720B284266F200BA1B91 /* Preview Assets.xcassets */; };
 		6333720E284266F200BA1B91 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333720D284266F200BA1B91 /* Persistence.swift */; };
 		63337211284266F200BA1B91 /* Credit_Card_Spending_Money_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6333720F284266F200BA1B91 /* Credit_Card_Spending_Money_Tracker.xcdatamodeld */; };
+		6333721A2842679600BA1B91 /* AddCardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633372192842679600BA1B91 /* AddCardForm.swift */; };
+		6333721C284267B200BA1B91 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333721B284267B200BA1B91 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		6333720B284266F200BA1B91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6333720D284266F200BA1B91 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		63337210284266F200BA1B91 /* Credit_Card_Spending_Money_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Credit_Card_Spending_Money_Tracker.xcdatamodel; sourceTree = "<group>"; };
+		633372192842679600BA1B91 /* AddCardForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardForm.swift; sourceTree = "<group>"; };
+		6333721B284267B200BA1B91 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 		63337203284266F100BA1B91 /* Credit Card Spending Money Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				633372172842676300BA1B91 /* Main */,
 				63337204284266F100BA1B91 /* Credit_Card_Spending_Money_TrackerApp.swift */,
 				63337206284266F100BA1B91 /* ContentView.swift */,
 				63337208284266F200BA1B91 /* Assets.xcassets */,
@@ -71,6 +76,23 @@
 				6333720B284266F200BA1B91 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		633372172842676300BA1B91 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				633372182842677100BA1B91 /* AddCard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		633372182842677100BA1B91 /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				633372192842679600BA1B91 /* AddCardForm.swift */,
+				6333721B284267B200BA1B91 /* MainView.swift */,
+			);
+			path = AddCard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6333721A2842679600BA1B91 /* AddCardForm.swift in Sources */,
+				6333721C284267B200BA1B91 /* MainView.swift in Sources */,
 				63337211284266F200BA1B91 /* Credit_Card_Spending_Money_Tracker.xcdatamodeld in Sources */,
 				6333720E284266F200BA1B91 /* Persistence.swift in Sources */,
 				63337207284266F100BA1B91 /* ContentView.swift in Sources */,
