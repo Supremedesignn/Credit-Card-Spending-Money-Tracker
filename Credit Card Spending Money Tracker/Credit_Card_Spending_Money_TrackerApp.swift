@@ -13,7 +13,7 @@ struct Credit_Card_Spending_Money_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

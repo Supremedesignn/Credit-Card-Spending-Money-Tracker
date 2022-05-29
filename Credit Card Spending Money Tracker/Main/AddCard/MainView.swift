@@ -15,7 +15,7 @@ struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Card.timestamp, ascending: true)],
         animation: .default)
     private var cards: FetchedResults<Card>
     
@@ -26,7 +26,7 @@ struct MainView: View {
                 if !cards.isEmpty {
                     TabView {
                         ForEach(cards) { card in
-                            CreditCardView()
+                            CreditCardView(card: card)
                                 .padding(.bottom, 50)
                         }
                         
@@ -40,7 +40,8 @@ struct MainView: View {
                 // 2
                 Spacer()
                     .fullScreenCover(isPresented:
-                                        $shouldPresentAddCardForm, onDismiss: nil) {
+                                        $shouldPresentAddCardForm, onDismiss:
+                                        nil) {
                         AddCardForm()
                         
                     }
@@ -51,7 +52,7 @@ struct MainView: View {
                 addItemButton
                 deleteAllButton
             },
-                trailing: addCardButton)
+                                trailing: addCardButton)
         }
     }
     // refactor button
@@ -71,7 +72,7 @@ struct MainView: View {
         } label: {
             Text("Delete All")
         }
-
+        
     }
     
     var addItemButton: some View {
@@ -98,10 +99,12 @@ struct MainView: View {
     }
     
     struct CreditCardView: View {
+        
+        let card: Card
+        
         var body: some View {
             VStack(alignment: .leading, spacing: 16) {
-                
-                Text("Apple Black Visa Card")
+                Text(card.name!)
                     .font(.system(size: 24, weight: .semibold))
                 
                 
@@ -120,31 +123,42 @@ struct MainView: View {
                 
                 
                 
-                Text("1234 1234 1234 1234")
+                Text(card.number ?? "")
                 
-                Text("Credit  Limit: $50,000")
+                Text("Credit  Limit: $\(card.limit)")
                 
                 HStack { Spacer() }
                 
             }
             .foregroundColor(.white)
             .padding()
-            .background(LinearGradient(colors: [
-                Color.black.opacity(0.6),
-                Color.black
-            ], startPoint: .center, endPoint: .bottom)
-                        
-            )
+            .background(VStack {
+                if let colorData = card.color,
+                   let uiColor = UIColor.color(data: colorData),
+                   let actualColor = Color(uiColor) {
+                    
+                    // iOS 14
+                    //                    LinearGradient(gradient: .init(stops: [
+                    //                        .init(color: actualColor.opacity(0.6), location: 0),
+                    //                        .init(color: actualColor, location: 1)
+                    //                    ]), startPoint: .top, endPoint: .bottom)
+                    
+                    LinearGradient(colors: [
+                        actualColor.opacity(0.6),
+                        actualColor
+                    ], startPoint: .center, endPoint: .bottom)
+                } else {
+                    Color.purple
+                }
+            })
             .overlay(RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                .stroke(Color.black.opacity(0.5), lineWidth: 1)
             )
-            
             .cornerRadius(8)
             .shadow(radius: 5)
             .padding(.horizontal)
             .padding(.top, 8)
         }
-        
     }
     
     var addCardButton: some View {
@@ -165,10 +179,10 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewContext =
+        let context =
         PersistenceController.shared.container.viewContext
         MainView()
-            .environment(\.managedObjectContext, viewContext)
+            .environment(\.managedObjectContext, context)
         // AddCardForm()
     }
 }
